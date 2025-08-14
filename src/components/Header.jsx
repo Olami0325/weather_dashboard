@@ -1,4 +1,6 @@
 import React from "react";
+import ThemeToggle from "./ThemeToggle";
+
 
 function Header() {
   return (
@@ -15,6 +17,8 @@ function Header() {
           <a href="/contact">Contact</a>
         </li>
       </ul>
+
+      <ThemeToggle />
       
     </header>
   );
