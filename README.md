@@ -9,7 +9,7 @@ The app integrates with a public weather API to fetch and display temperature, h
 🚀 **Features**
 
 **City Search** – Search for weather data by entering a city name.
-**Saved Searches** - Your recent city seraches are saved locally (Local Storage) easy and quick access.
+**Saved Searches** - Your recent city searches are saved locally (Local Storage) easy and quick access.
 
 **Live Weather Data** – Displays:
   - 🌡️ Temperature (°C or °F)
@@ -23,13 +23,13 @@ The app integrates with a public weather API to fetch and display temperature, h
 **Real-Time Updates** – Auto-refresh weather data every few minutes.
 **Weekly Forecast** – Show 5-day forecasts with icons.
 **Theme Toggle** – Light/Dark mode or background changes based on weather.
-**Geolocation Support** – Auto-detect and display weather for your current location.
+**Geo-location Support** – Auto-detect and display weather for your current location.
 
 ---
 
  🛠️ **Tech Stack**
 
-**Frontend Framewrok** - **React JS**, Component-based UI library (via **VITE**).
+**Frontend Framework** - **React JS**, Component-based UI library (via **VITE**).
 
 **Styling** with **TailwindCSS v3** – Utility-first styling for rapid UI development.
 
