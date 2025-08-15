@@ -1,1 +1,1 @@
-Weather Dashboard. 
+🌤️ My Weather Dashboard
