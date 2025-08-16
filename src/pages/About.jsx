@@ -1,7 +1,7 @@
 function About() {
   return (
     <div className="min-h-screen w-full max-w-[540px] shadow-md mx-auto bg-gray-100 flex flex-col p-4">
-      <h1 className="text-2xl font-bold mb-4">About this App</h1>
+      <h1 className="text-2xl font-bold mb-4 text-blue-600">About this App</h1>
       <p className="text-gray-700 mb-4">
         This dashboard provides real-time weather updates and forecast for
         various locations. It fetches data from from a reliable weather API to

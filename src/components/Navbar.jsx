@@ -1,18 +1,19 @@
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav>
-      <ul className="flex space-x-10 ">
-        <li>
-          <a href="/" className="hover:underline">Home</a>
-        </li>
-        <li>
-          <a href="/about" className="hover:underline">About</a>
-        </li>
-        <li>
-          <a href="/contact" className="hover:underline">Contact</a>
-        </li>
-      </ul>
+    <nav className="flex space-x-10 ">
+      <Link to="/" className="hover:underline">
+        Home
+      </Link>
+
+      <Link to="/about" className="hover:underline">
+        About
+      </Link>
+      
+      <Link to="/contact" className="hover:underline">
+        Contact
+      </Link>
     </nav>
   );
 }
