@@ -1,13 +1,36 @@
-import React from "react";
+import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { HiMenu, HiX } from "react-icons/hi";
 import Navbar from "./Navbar";
 
 function Header() {
+  
+  const [isOpen, setIsOpen] = useState(false);
+  
+
   return (
-    <header className="flex justify-between items-center p-4 bg-blue-500 text-white">
+    <header className="flex justify-between items-center p-4 bg-blue-500 dark:bg-gray-800 text-white dark:text-gray-100 relative">
       <img src="#" alt="Logo" className="w-16" />
-      <Navbar />
-      <ThemeToggle />
+      {/* Desktop Navbar and ThemeToggle */}
+      <div className="hidden md:flex items-center space-x-4">
+        <Navbar />
+        <ThemeToggle />
+      </div>
+
+      {/* Mobile ThemeToggle and Hamburger*/}
+      <div className="flex md:hidden items-center space-x-2">
+        <ThemeToggle />
+        <button className="text-2xl" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <HiX /> : <HiMenu />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isOpen && (
+        <div className="w-full top-full max-w-xs absolute left-0 flex flex-col items-center space-y-4 py-4 md:hidden z-50  ">
+          <Navbar isOpen={isOpen} closeMenu={() => setIsOpen(false)} />
+        </div>
+      )}
     </header>
   );
 }
