@@ -3,103 +3,111 @@ import SavedCities from "../components/SavedCities";
 import SearchBar from "../components/SearchBar";
 import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import FiveDayForecastCard from "../components/FiveDayForecastCard";
-import { IoMdSunny } from "react-icons/io";
-import { IoMdCloudy } from "react-icons/io";
-import { IoMdRainy } from "react-icons/io";
-import { IoMdThunderstorm } from "react-icons/io";
 import ErrorBanner from "../components/ErrorBanner";
 import Footer from "../components/Footer";
 import { useState } from "react";
 
 function Dashboard() {
-
-  const [forecast, setForecast] = useState(null); //store weather data here
-  const [error, setError] = useState(false); //error state
+  const [forecast, setForecast] = useState(null); // current weather
+  const [fiveDayForecast, setFiveDayForecast] = useState([]); // 5-day forecast
+  const [error, setError] = useState(""); // store error messages
+  const [loading, setLoading] = useState(false); // loading state
 
   // Function to fetch weather data from API
   const handleSearch = async (city) => {
     try {
-      setError(false); //reset error state before fetching
+      setError(""); // reset error state
+      setLoading(true); // show loading
+
       const apiKey = "30ff8ff5d8dabeb299470339370ae62b";
-      const response = await fetch(
+
+      // Fetch current weather
+      const currentResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
       );
-      if(!response.ok) {
-        throw new Error("City not found");
-      }
-      const data = await response.json();
-      const newForecast ={
-        temperature : data.main.temp,
-        condition : data.weather[0].description,
-        humidity : data.main.humidity,
-        wind : data.wind.speed,
-        icon : data.weather[0].icon,
+      if (!currentResponse.ok) throw new Error("City not found");
+      const currentData = await currentResponse.json();
+
+      const newForecast = {
+        temperature: currentData.main.temp,
+        condition: currentData.weather[0].description,
+        humidity: currentData.main.humidity,
+        wind: currentData.wind.speed,
+        icon: currentData.weather[0].icon,
       };
       setForecast(newForecast);
+
+      // Fetch 5-day forecast
+      const forecastResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
+      );
+      if (!forecastResponse.ok) throw new Error("Could not fetch forecast");
+      const forecastData = await forecastResponse.json();
+
+      // Process forecast (pick one data point per day, usually at 12:00)
+      const dailyData = forecastData.list.filter((reading) =>
+        reading.dt_txt.includes("12:00:00")
+      );
+
+      const formattedForecast = dailyData.slice(0, 5).map((day) => ({
+        day: new Date(day.dt_txt).toLocaleDateString("en-US", {
+          weekday: "short",
+        }),
+        temperature: Math.round(day.main.temp),
+        icon: day.weather[0].icon,
+        condition: day.weather[0].main,
+      }));
+
+      setFiveDayForecast(formattedForecast);
     } catch (err) {
       console.error("Error fetching weather data:", err);
-      setError(true); //set error state to true if fetch fails
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false); // stop loading
     }
-  }
-
-  const FiveDayForecast = [
-    {
-      day: "Mon",
-      temperature: 25,
-      weatherIcon: <IoMdSunny />,
-      condition: "sunny",
-    },
-    {
-      day: "Tue",
-      temperature: 32,
-      weatherIcon: <IoMdCloudy />,
-      condition: "cloudy",
-    },
-    {
-      day: "Wed",
-      temperature: 28,
-      weatherIcon: <IoMdRainy />,
-      condition: "rainy",
-    },
-    {
-      day: "Thur",
-      temperature: 18,
-      weatherIcon: <IoMdCloudy />,
-      condition: "cloudy",
-    },
-    {
-      day: "Fri",
-      temperature: 20,
-      weatherIcon: <IoMdSunny />,
-      condition: "sunny",
-    },
-  ];
+  };
 
   return (
-    <div className="min-h-screen w-full max-w-[540px] shadow-md mx-auto bg-gray-100 flex flex-col">
+    <div className="min-h-screen w-full max-w-[540px] shadow-lg mx-auto bg-gradient-to-b from-blue-100 to-gray-100 flex flex-col rounded-lg overflow-hidden">
       <Header />
 
       {/* SearchBar with onSearch prop */}
       <SearchBar onSearch={handleSearch} />
 
-      {/* Conditionally render ErrorBanner if there's an error or API fails */}
-      {error && <ErrorBanner />}
+      {/* Loading State */}
+      {loading && (
+        <p className="text-center text-gray-600 py-4 animate-pulse">
+          Fetching weather data...
+        </p>
+      )}
+
+      {/* Conditionally render ErrorBanner */}
+      {error && <ErrorBanner message={error} />}
 
       {/* Show current weather if available */}
       {forecast && <CurrentWeatherCard forecast={forecast} />}
 
       {/* Five Day Forecast Section */}
-      <div className="grid grid-cols-5 gap-4 p-4">
-        {FiveDayForecast.map((forecast, index) => (
-          <FiveDayForecastCard
-            key={index}
-            day={forecast.day}
-            temperature={forecast.temperature}
-            weatherIcon={forecast.weatherIcon}
-            condition={forecast.condition}
-          />
-        ))}
-      </div>
+      {fiveDayForecast.length > 0 && (
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 p-4">
+          {fiveDayForecast.map((day, index) => (
+            <FiveDayForecastCard
+              key={index}
+              day={day.day}
+              temperature={day.temperature}
+              weatherIcon={
+                <img
+                  src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                  alt={day.condition}
+                  className="w-10 h-10 mx-auto"
+                />
+              }
+              condition={day.condition}
+            />
+          ))}
+        </div>
+      )}
+
       <SavedCities />
       <Footer />
     </div>
