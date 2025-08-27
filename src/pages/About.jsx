@@ -9,7 +9,7 @@ function About() {
       </p>
       <p className="text-gray-700 mb-4">
         Developed using <span>React</span> and
-        <span>Tailwind CSS for fast and responsive design</span> <br /> <br />
+        <span>Tailwind CSS for fast and responsive design.</span> <br /> <br />
         Our goal is to make weather tracking simple, reliable, accessible and
         visually appealing.
       </p>

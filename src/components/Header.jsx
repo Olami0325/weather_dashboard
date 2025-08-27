@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { HiMenu, HiX } from "react-icons/hi";
+import Logo from "../assets/Logo.png"
 import Navbar from "./Navbar";
 
 function Header() {
@@ -9,8 +10,8 @@ function Header() {
   
 
   return (
-    <header className="flex justify-between items-center p-4 bg-blue-500 dark:bg-gray-800 text-white dark:text-gray-100 relative">
-      <img src="#" alt="Logo" className="w-16" />
+    <header className="flex w-full justify-between items-center p-4 bg-blue-500 dark:bg-gray-800 text-white dark:text-gray-100 relative">
+      <img src={Logo} alt="Logo" className="w-8" />
       {/* Desktop Navbar and ThemeToggle */}
       <div className="hidden md:flex items-center space-x-4">
         <Navbar />

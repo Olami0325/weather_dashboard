@@ -3,16 +3,10 @@ import { useState } from "react";
 function SearchBar({ onSearch }) {
   const [city, setCity] = useState("");
 
-//   const handleChange = (e) => {
-//     setCity({ 
-//         ...city, [e.target.name]: e.target.value });
-//   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim() === "") return;
     onSearch(city);
-    // console.log("searching for city:", city);
   };
 
   return (
@@ -30,7 +24,7 @@ function SearchBar({ onSearch }) {
       />
       <button
         type="submit"
-        className="px-3 py-1 rounded-md text-white bg-black font-bold"
+        className="px-3 py-1 rounded-md text-white bg-black font-bold hover:bg-indigo-700"
       >
         Search
       </button>

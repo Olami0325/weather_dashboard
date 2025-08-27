@@ -5,7 +5,7 @@ import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import FiveDayForecastCard from "../components/FiveDayForecastCard";
 import ErrorBanner from "../components/ErrorBanner";
 import Footer from "../components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
   const [forecast, setForecast] = useState(null); // current weather
@@ -67,6 +67,31 @@ function Dashboard() {
     }
   };
 
+    // saved cities state
+  const [savedCities, setSavedCities] = useState(()=>{
+    const stored = localStorage.getItem("savedCities")
+      return stored ? JSON.parse(stored) : []
+  });
+
+    useEffect(()=> {
+      localStorage.setItem("savedCities", JSON.stringify(savedCities));
+    }, [savedCities])
+
+    // add city
+    const handleAddSavedCity = (city) => {
+      setSavedCities((prev) => 
+        prev.includes(city)? prev : [...prev, city] //avoid duplicates
+    );
+      handleSearch(city); // fetch weather after adding
+    }
+
+    // select (load) city
+  const handleSelectSavedCity = (city) => handleSearch(city);
+  
+    // remove city
+  const handleRemoveSavedCity = (cityToRemove) =>
+    setSavedCities((prev) => prev.filter((c) => c !== cityToRemove));
+
   return (
     <div className="min-h-screen w-full max-w-[540px] shadow-lg mx-auto bg-gradient-to-b from-blue-100 to-gray-100 flex flex-col rounded-lg overflow-hidden">
       <Header />
@@ -108,7 +133,12 @@ function Dashboard() {
         </div>
       )}
 
-      <SavedCities />
+      <SavedCities
+        cities={savedCities}
+        onSelect={handleSelectSavedCity}
+        onRemove={handleRemoveSavedCity}
+        onAdd={handleAddSavedCity}  // allow manual add via SavedCities input , searches-auto saves on success
+      />
       <Footer />
     </div>
   );
