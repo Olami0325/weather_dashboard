@@ -1,6 +1,6 @@
 function FiveDayForecastCard({ day, temperature, weatherIcon, condition }) {
   return (
-    <section className="bg-white p-4 rounded-md text-center mx-auto ">
+    <section className="bg-white p-4 rounded-md text-center mx-auto w-full h-full ">
       <p>{day}</p>
       <p>{temperature} °C</p>
       <div className="flex justify-center items-center">{weatherIcon}</div>

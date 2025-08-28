@@ -114,7 +114,7 @@ function Dashboard() {
 
       {/* Five Day Forecast Section */}
       {fiveDayForecast.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 p-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-4">
           {fiveDayForecast.map((day, index) => (
             <FiveDayForecastCard
               key={index}
