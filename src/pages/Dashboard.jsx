@@ -80,9 +80,9 @@ function Dashboard() {
     // add city
     const handleAddSavedCity = (city) => {
       setSavedCities((prev) => 
-        prev.includes(city)? prev : [...prev, city] //avoid duplicates
+        prev.includes(city)? prev : [...prev, city] 
     );
-      handleSearch(city); // fetch weather after adding
+      handleSearch(city); // To fetch weather after adding
     }
 
     // select (load) city
