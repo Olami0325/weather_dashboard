@@ -9,34 +9,33 @@ The app integrates with a public weather API to fetch and display temperature, h
 🚀 **Features**
 
 **City Search** – Search for weather data by entering a city name.
-**Saved Favorite cities** - Your recent city searches are saved locally (Local Storage) easy and quick access.
-**Remove saved cities** cUser can easily remove their saved cities
+**Saved cities** - Your recent city searches are saved locally (LocalStorage) easy and quick access.
+**Remove saved cities** User can easily remove their saved cities
 **Live Weather Data** – Displays:
   - 🌡️ Temperature (°C or °F)
   - 💧 Humidity (%)
   - 🌬️ Wind speed (km/h or mph)
-  - ☀️ Weather condition icon
+  - ☀️ Weather condition + icon
 **Responsive UI** – Works smoothly across desktop, tablet, and mobile devices.
 **Error Handling** – User-friendly alerts for invalid city names or API errors.
 
 **Additional Features**
 **Weekly Forecast** – Show 5-day forecasts with icons.
 **Theme Toggle** – Light/Dark mode or background changes based on weather.
-**Geo-location Support** – Auto-detect and display weather for your current location.
 
 ---
 
  🛠️ **Tech Stack**
 
-**Frontend Framework** - **React JS**, Component-based UI library (via **VITE**).
+**React(VITE)** - Component-based Frontend framework
 
-**Styling** with **TailwindCSS v3** – Utility-first styling for rapid UI development.
+***Tailwind CSS v3** – Utility-first styling for rapid UI development
 
-**React Icons** – Scalable vector icons for weather conditions.
+**React Icons** – Weather and UI Icons
 
 **Weather API** – **OpenWeatherMap API**(https://openweathermap.org/) 
 
-**Deployment** – **Vercel** (https://vercel.com/) 
+**Deployment** – **Hosted on Vercel** (https://vercel.com/) 
 
 ---
 
