@@ -54,7 +54,7 @@ cd weather-dashboard
 
 3️⃣ Create a .env file in the root and add your OpenWeather API key:
 
-VITE_WEATHER_API_KEY="30ff8ff5d8dabeb299470339370ae62b"
+OpenWeather API key: store in `.env` as VITE_OPENWEATHER_API_KEY
 
 
 4️⃣ Run the development server
