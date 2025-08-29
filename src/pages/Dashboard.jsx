@@ -6,6 +6,7 @@ import FiveDayForecastCard from "../components/FiveDayForecastCard";
 import ErrorBanner from "../components/ErrorBanner";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
+import { weatherMap } from "../components/weatherMap";
 
 function Dashboard() {
   const [forecast, setForecast] = useState(null); // current weather
@@ -29,8 +30,11 @@ function Dashboard() {
       const currentData = await currentResponse.json();
 
       const newForecast = {
+        city: currentData.name,
         temperature: currentData.main.temp,
-        condition: currentData.weather[0].description,
+        condition:
+          weatherMap[currentData.weather[0].main] ||
+          currentData.weather[0].description,
         humidity: currentData.main.humidity,
         wind: currentData.wind.speed,
         icon: currentData.weather[0].icon,
@@ -55,7 +59,7 @@ function Dashboard() {
         }),
         temperature: Math.round(day.main.temp),
         icon: day.weather[0].icon,
-        condition: day.weather[0].main,
+        condition: weatherMap[day.weather[0].main] || day.weather[0].main,
       }));
 
       setFiveDayForecast(formattedForecast);
@@ -67,33 +71,31 @@ function Dashboard() {
     }
   };
 
-    // saved cities state
-  const [savedCities, setSavedCities] = useState(()=>{
-    const stored = localStorage.getItem("savedCities")
-      return stored ? JSON.parse(stored) : []
+  // saved cities state
+  const [savedCities, setSavedCities] = useState(() => {
+    const stored = localStorage.getItem("savedCities");
+    return stored ? JSON.parse(stored) : [];
   });
 
-    useEffect(()=> {
-      localStorage.setItem("savedCities", JSON.stringify(savedCities));
-    }, [savedCities])
+  useEffect(() => {
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+  }, [savedCities]);
 
-    // add city
-    const handleAddSavedCity = (city) => {
-      setSavedCities((prev) => 
-        prev.includes(city)? prev : [...prev, city] 
-    );
-      handleSearch(city); // To fetch weather after adding
-    }
+  // add city
+  const handleAddSavedCity = (city) => {
+    setSavedCities((prev) => (prev.includes(city) ? prev : [...prev, city]));
+    handleSearch(city); // To fetch weather after adding
+  };
 
-    // select (load) city
+  // select (load) city
   const handleSelectSavedCity = (city) => handleSearch(city);
-  
-    // remove city
+
+  // remove city
   const handleRemoveSavedCity = (cityToRemove) =>
     setSavedCities((prev) => prev.filter((c) => c !== cityToRemove));
 
   return (
-    <div className="min-h-screen w-full max-w-[540px] shadow-lg mx-auto bg-gradient-to-b from-blue-100 to-gray-100 flex flex-col rounded-lg overflow-hidden">
+    <div className="min-h-screen w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-hidden">
       <Header />
 
       {/* SearchBar with onSearch prop */}
@@ -124,7 +126,7 @@ function Dashboard() {
                 <img
                   src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
                   alt={day.condition}
-                  className="w-10 h-10 mx-auto"
+                  className="w-14 h-14 mx-auto"
                 />
               }
               condition={day.condition}
@@ -137,7 +139,7 @@ function Dashboard() {
         cities={savedCities}
         onSelect={handleSelectSavedCity}
         onRemove={handleRemoveSavedCity}
-        onAdd={handleAddSavedCity}  // allow manual add via SavedCities input , searches-auto saves on success
+        onAdd={handleAddSavedCity} // allow manual add via SavedCities input , searches-auto saves on success
       />
       <Footer />
     </div>

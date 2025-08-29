@@ -1,9 +1,9 @@
 function Footer() {
   return (
-    <footer className="w-full bg-blue-500 mt-auto text-white text-center p-4">
+    <footer className="w-full bg-sky-400 mt-auto text-white font-semibold dark:bg-gray-800  dark:text-gray-100 text-center p-4">
       <p>
-        Saheed Yusuf &copy; {new Date().getFullYear()} | Bringing weather
-        updates to your fingertips.
+        &copy; {new Date().getFullYear()} Weather Dashboard. All rights reserved.
+        
       </p>
     </footer>
   );

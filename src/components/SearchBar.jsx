@@ -19,12 +19,12 @@ function SearchBar({ onSearch }) {
         name="city"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="Search"
+        placeholder="Enter a city name . . ."
         className="flex-1 py-2 px-3 rounded border border-gray-300"
       />
       <button
         type="submit"
-        className="w-full sm:w-auto px-6 py-2 rounded-md text-white bg-black font-bold hover:bg-indigo-700"
+        className="w-full sm:w-auto px-6 py-2 rounded-md text-white bg-sky-500 dark:bg-sky-700 font-bold hover:bg-indigo-700"
       >
         Search
       </button>

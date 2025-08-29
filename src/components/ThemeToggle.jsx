@@ -26,11 +26,11 @@ function ThemeToggle() {
   }, [darkMode]);
 
   return (
-    <button className="p-2 text-xl" onClick={() => setDarkMode(!darkMode)}>
+    <button className="p-2 text-xl text-gray-900 dark:text-gray-100" onClick={() => setDarkMode(!darkMode)}>
       {darkMode ? (
-        <IoMdSunny className="text-yellow-400" />
+        <IoMdSunny className="text-white" />
       ) : (
-        <IoMdMoon className="text-gray-800" />
+        <IoMdMoon className="text-gray-800 dark:text-gray-200" />
       )}
     </button>
   );

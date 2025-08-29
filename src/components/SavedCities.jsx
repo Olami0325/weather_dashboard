@@ -13,8 +13,8 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
   };
 
   return (
-    <div className=" flex flex-col bg-white mx-auto px-6 rounded-md shadow-md my-4 w-full sm:mx-w-sm md:mx-w-md lg:max-w-lg">
-      <h2 className="text-left text-indigo-950 p-2 font-semibold text-lg sm:text-xl md:text-2xl">Saved Cities</h2>
+    <div className=" flex flex-col bg-sky-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow mx-auto px-6 my-4 w-full sm:mx-w-sm md:mx-w-md lg:max-w-lg">
+      <h2 className="text-left text-indigo-950 dark:text-white p-2 font-semibold text-lg sm:text-xl md:text-2xl">Saved Cities</h2>
       <form
         onSubmit={submitAdd}
         className="flex flex-col sm:flex-row gap-2 rounded-md mb-4 "
@@ -24,12 +24,12 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
           value={input}
           placeholder="Add a city (e.g Paris)"
           onChange={(e) => setInput(e.target.value)}
-          className="flex flex-grow p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex flex-grow p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
 
         <button
           type="submit"
-          className="bg-black text-white px-4 p-2 rounded-md hover:bg-indigo-700"
+          className="bg-sky-500 dark:bg-sky-700 text-white px-4 p-2 rounded-md hover:bg-indigo-700 "
         >
           Add
         </button>
@@ -39,9 +39,9 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
       {cities.length === 0 ? (
         <p></p>
       ) : (
-        <ul className="divide-y divide-gray-200 bg-blue-700 p-4 mb-6 rounded-md">
+        <ul className="divide-y divide-gray-200 bg-blue-700 dark:bg-gray-800 p-4 mb-6 rounded-md">
           {cities.map((city) => (
-            <li className="flex flex-wrap items-center justify-between gap-4 p-2 border border-gray-200"
+            <li className="flex flex-wrap items-center justify-between gap-4 p-2 cursor-pointer border border-gray-200"
               key={city}
               
             >
@@ -61,7 +61,7 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
                 aria-label={`Remove $(city)`}
 
               >
-                <div className="w-full border-2 bg-blue-700"><FaTimes /></div>
+                <div className="w-full border-2 bg-blue-700 dark:bg-gray-800"><FaTimes /></div>
               </button>
             </li>
           ))}

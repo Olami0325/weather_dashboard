@@ -2,14 +2,12 @@
 
 A simple and responsive Weather Dashboard built with React JS, OpenWeatherAPI and Tailwind CSS.This app allows users to search cites and view real-time weather conditions such as temperature, humidity, and weather description. Users can also save their favorites cities for quick access. 
 
-The app integrates with a public weather API to fetch and display temperature, humidity, wind speed, and weather icons, providing a sleek and intuitive user experience.
-
 ---
 
 🚀 **Features**
 
 **City Search** – Search for weather data by entering a city name.
-**Saved cities** - Your recent city searches are saved locally (LocalStorage) easy and quick access.
+**Saved cities** - Your recent city searches are saved locally (LocalStorage) for easy and quick access.
 **Remove saved cities** User can easily remove their saved cities
 **Live Weather Data** – Displays:
   - 🌡️ Temperature (°C or °F)
@@ -29,7 +27,7 @@ The app integrates with a public weather API to fetch and display temperature, h
 
 **React(VITE)** - Component-based Frontend framework
 
-***Tailwind CSS v3** – Utility-first styling for rapid UI development
+**Tailwind CSS v3** – Utility-first styling for rapid UI development
 
 **React Icons** – Weather and UI Icons
 

@@ -1,17 +1,18 @@
 function FiveDayForecastCard({ day, temperature, weatherIcon, condition }) {
   return (
-    <section 
+    <div 
       className="
-        bg-white p-4 py-6 rounded-md text-center mx-auto shadow-md flex flex-col
+        bg-sky-200 p-4 py-6 rounded-xl text-center mx-auto shadow-md flex flex-col dark:bg-gray-800 text-gray-900 dark:text-gray-100
           w-full mx-w-[180px] h-full
           sm:mx-w-[200px] sm:h-full
           md:mx-w-[220px] md:h-full"
       >
-        <p>{day}</p>
-        <p>{temperature} °C</p>
+       
+        <p className="font-bold">{day}</p>
+        <p className="font-bold">{temperature} °C</p>
         <div className="flex justify-center items-center">{weatherIcon}</div>
-        <p>{condition}</p>
-    </section>
+        <p className="capitalize font-bold">{condition}</p>
+    </div>
   );
 }
 
