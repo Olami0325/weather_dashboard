@@ -20,7 +20,8 @@ function Dashboard() {
       setError(""); // reset error state
       setLoading(true); // show loading
 
-      const apiKey = "30ff8ff5d8dabeb299470339370ae62b";
+      const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
 
       // Fetch current weather
       const currentResponse = await fetch(
