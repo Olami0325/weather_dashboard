@@ -9,7 +9,8 @@ function Header() {
 
   return (
     <header className="flex w-full justify-between items-center p-4 bg-sky-400 dark:bg-gray-800 text-white dark:text-gray-100 relative">
-      <img src={Logo} alt="Logo" className="w-8" />
+       
+      <img src={Logo} alt="Logo" className="w-8" /> 
 
       {/* Desktop Navbar and ThemeToggle */}
       <div className="hidden md:flex items-center space-x-4">

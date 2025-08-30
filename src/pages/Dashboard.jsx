@@ -96,6 +96,9 @@ function Dashboard() {
   return (
     <div className="min-h-screen w-full bg-gray-100 flex justify-center p-4">
       <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-x-hidden px-4 py-6">
+        <h2 className="text-3xl font-extrabold text-center py-4 bg-blue-100 dark:bg-gray-800 text-blue-800 dark:text-blue-300 rounded-b-lg shadow-md">
+          Weather Dashboard
+        </h2>
         {/* SearchBar with onSearch prop */}
         <SearchBar onSearch={handleSearch} />
 
