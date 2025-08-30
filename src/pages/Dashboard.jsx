@@ -1,10 +1,9 @@
-import Header from "../components/Header";
 import SavedCities from "../components/SavedCities";
 import SearchBar from "../components/SearchBar";
 import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import FiveDayForecastCard from "../components/FiveDayForecastCard";
 import ErrorBanner from "../components/ErrorBanner";
-import Footer from "../components/Footer";
+
 import { useEffect, useState } from "react";
 import { weatherMap } from "../components/weatherMap";
 
@@ -21,7 +20,6 @@ function Dashboard() {
       setLoading(true); // show loading
 
       const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
-
 
       // Fetch current weather
       const currentResponse = await fetch(
@@ -96,53 +94,52 @@ function Dashboard() {
     setSavedCities((prev) => prev.filter((c) => c !== cityToRemove));
 
   return (
-    <div className="min-h-screen w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-hidden">
-      <Header />
+    <div className="min-h-screen w-full bg-gray-100 flex justify-center p-4">
+      <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-x-hidden px-4 py-6">
+        {/* SearchBar with onSearch prop */}
+        <SearchBar onSearch={handleSearch} />
 
-      {/* SearchBar with onSearch prop */}
-      <SearchBar onSearch={handleSearch} />
+        {/* Loading State */}
+        {loading && (
+          <div className="w-full text-center py-4 bg-sky-100 dark:bg-gray-800 rounded-md animate-pulse">
+            Fetching weather data...
+          </div>
+        )}
 
-      {/* Loading State */}
-      {loading && (
-        <p className="text-center text-gray-600 py-4 animate-pulse">
-          Fetching weather data...
-        </p>
-      )}
+        {/* Conditionally render ErrorBanner */}
+        {error && <ErrorBanner message={error} />}
 
-      {/* Conditionally render ErrorBanner */}
-      {error && <ErrorBanner message={error} />}
+        {/* Show current weather if available */}
+        {forecast && <CurrentWeatherCard forecast={forecast} />}
 
-      {/* Show current weather if available */}
-      {forecast && <CurrentWeatherCard forecast={forecast} />}
+        {/* Five Day Forecast Section */}
+        {fiveDayForecast.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+            {fiveDayForecast.map((day, index) => (
+              <FiveDayForecastCard
+                key={index}
+                day={day.day}
+                temperature={day.temperature}
+                weatherIcon={
+                  <img
+                    src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                    alt={day.condition}
+                    className="w-14 h-14 mx-auto"
+                  />
+                }
+                condition={day.condition}
+              />
+            ))}
+          </div>
+        )}
 
-      {/* Five Day Forecast Section */}
-      {fiveDayForecast.length > 0 && (
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-4">
-          {fiveDayForecast.map((day, index) => (
-            <FiveDayForecastCard
-              key={index}
-              day={day.day}
-              temperature={day.temperature}
-              weatherIcon={
-                <img
-                  src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
-                  alt={day.condition}
-                  className="w-14 h-14 mx-auto"
-                />
-              }
-              condition={day.condition}
-            />
-          ))}
-        </div>
-      )}
-
-      <SavedCities
-        cities={savedCities}
-        onSelect={handleSelectSavedCity}
-        onRemove={handleRemoveSavedCity}
-        onAdd={handleAddSavedCity} // allow manual add via SavedCities input , searches-auto saves on success
-      />
-      <Footer />
+        <SavedCities
+          cities={savedCities}
+          onSelect={handleSelectSavedCity}
+          onRemove={handleRemoveSavedCity}
+          onAdd={handleAddSavedCity} // allow manual add via SavedCities input , searches-auto saves on success
+        />
+      </div>
     </div>
   );
 }

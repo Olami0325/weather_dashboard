@@ -19,7 +19,7 @@ function SearchBar({ onSearch }) {
         name="city"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="Enter a city name . . ."
+        placeholder="Search city . . ."
         className="flex-1 py-2 px-3 rounded border border-gray-300"
       />
       <button
