@@ -95,7 +95,7 @@ function Dashboard() {
 
   return (
     <div className="flex justify-center">
-      <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white/0 dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-x-hidden px-4 py-6">
+      <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white/0 dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-hidden px-4 py-6">
        
         {/* SearchBar with onSearch prop */}
         <SearchBar onSearch={handleSearch} />
@@ -115,7 +115,7 @@ function Dashboard() {
 
         {/* Five Day Forecast Section */}
         {fiveDayForecast.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-2 sm:px-0">
             {fiveDayForecast.map((day, index) => (
               <FiveDayForecastCard
                 key={index}

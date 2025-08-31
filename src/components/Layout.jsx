@@ -10,7 +10,7 @@ function Layout(){
             style={{ backgroundImage: `url(${bgImage})` }}
         >
             <Header/>
-            <main className="flex-grow mt-16 lg:my-5 px-4 lg:px-8">
+            <main className="flex-grow mt-16 lg:my-5">
                 <Outlet />
             </main>
             <Footer />
