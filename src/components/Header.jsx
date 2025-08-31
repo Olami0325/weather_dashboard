@@ -8,7 +8,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className=" w-full  bg-sky-400 dark:bg-gray-800 text-white dark:text-gray-100 shadow-md ">
+    <header className=" w-full  bg-sky-400 dark:bg-gray-800 text-white dark:text-gray-100 shadow-md relative">
       <div className="max-w-[540px] mx-auto px-4 py-3 flex justify-between items-center lg:max-w-full lg:px-8">
          <h1 className="text-xl font-bold  ">
           Weather Dashboard
