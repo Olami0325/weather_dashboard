@@ -22,7 +22,7 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
         <input
           type="text"
           value={input}
-          placeholder="Add a city (e.g Paris)"
+          placeholder="Add city"
           onChange={(e) => setInput(e.target.value)}
           className="flex flex-grow p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
