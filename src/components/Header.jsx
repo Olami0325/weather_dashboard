@@ -8,12 +8,13 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="flex w-full justify-between items-center p-4 bg-sky-400 dark:bg-gray-800 text-white dark:text-gray-100 relative">
-       
-      <img src={Logo} alt="Logo" className="w-8" /> 
-
-      {/* Desktop Navbar and ThemeToggle */}
-      <div className="hidden md:flex items-center space-x-4">
+    <header className=" w-full fixed top-0 left-0 z-50 bg-sky-400 dark:bg-gray-800 text-white dark:text-gray-100 shadow-md ">
+      <div className="max-w-[540px] mx-auto px-4 py-3 flex justify-between items-center lg:max-w-full lg:px-8">
+         <h1 className="text-xl font-bold  ">
+          Weather Dashboard
+        </h1>
+         {/* Desktop Navbar and ThemeToggle */}
+      <div className="hidden md:flex items-center space-x-4 lg:space-x-6 lg:ml-auto">
         <Navbar />
         <ThemeToggle />
       </div>
@@ -32,10 +33,10 @@ function Header() {
           <Navbar isOpen={isOpen} closeMenu={() => setIsOpen(false)} />
         </div>
       )}
+      </div> 
     </header>
   );
 }
 
 export default Header;
-
 
