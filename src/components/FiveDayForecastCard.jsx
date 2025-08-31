@@ -2,7 +2,7 @@ function FiveDayForecastCard({ day, temperature, weatherIcon, condition }) {
   return (
     <div 
       className="
-        bg-sky-200 p-4 rounded-xl text-center shadow-md flex flex-col dark:bg-gray-800 text-gray-900 dark:text-gray-100
+        bg-white/50 dark:bg-gray-900/80 p-4 rounded-xl text-center shadow-md flex flex-col d text-gray-900 dark:text-gray-100
           w-full
           sm:w-full
           md:max-w-[220px]"

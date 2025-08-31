@@ -95,7 +95,7 @@ function Dashboard() {
 
   return (
     <div className="flex justify-center">
-      <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-x-hidden px-4 py-6">
+      <div className="w-full max-w-[540px] shadow-2xl dark:shadow-lg mx-auto bg-white/0 dark:bg-gray-900/50 text-gray-900 dark:text-gray-100 flex flex-col rounded-lg overflow-x-hidden px-4 py-6">
        
         {/* SearchBar with onSearch prop */}
         <SearchBar onSearch={handleSearch} />

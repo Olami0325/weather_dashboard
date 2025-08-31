@@ -13,7 +13,7 @@ function SavedCities({ cities = [], onRemove, onAdd, onSelect }) {
   };
 
   return (
-    <div className=" flex flex-col bg-sky-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow mx-auto p-4 my-4 w-full sm:mx-w-sm md:mx-w-md lg:max-w-lg">
+    <div className=" flex flex-col bg-white/70 dark:bg-gray-900/70 text-gray-900 dark:text-gray-100 rounded-xl shadow mx-auto p-4 my-4 w-full sm:mx-w-sm md:mx-w-md lg:max-w-lg">
       <h2 className="text-left text-indigo-950 dark:text-white p-2 font-semibold text-lg sm:text-xl md:text-2xl my-2">Saved Cities</h2>
       <form
         onSubmit={submitAdd}

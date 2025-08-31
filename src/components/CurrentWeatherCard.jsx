@@ -8,7 +8,7 @@ function CurrentWeatherCard({ forecast }) {
   const iconUrl = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png `;
   return (
     <section className="w-full max-w-xs mx-auto my-4 px-4">
-      <div className="flex flex-col  items-center  bg-sky-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 rounded-xl shadow-md gap-1 sm:gap-4">
+      <div className="flex flex-col  items-center  bg-white/50 dark:bg-gray-900/80 text-gray-900 dark:text-gray-100 p-4 rounded-xl shadow-md gap-1 sm:gap-4">
         <h2 className="text-xl text-sky-800 dark:text-white font-bold">{forecast.city}</h2>
         {forecast.icon && (
           <img
